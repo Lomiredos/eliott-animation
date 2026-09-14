@@ -18,7 +18,7 @@ find_package(nlohmann_json CONFIG REQUIRED)
 
 add_library(eliott-animation STATIC
     src/AnimationParser.cpp
-    src/Animator.cpp
+    src/AnimationSystem.cpp
 )
 
 target_include_directories(eliott-animation PUBLIC

@@ -1,12 +1,14 @@
-#include "animation/Animator.hpp"
+#include "animation/AnimationSystem.hpp"
+#include "animation/Animation.hpp"
+#include "renderer/Sprite.hpp"
 #include "math/Rect.hpp"
 
-void ee::animation::Animator::update(float _dt)
+void ee::animation::AnimationSystem::update(ee::ecs::World &_world, float _dt)
 {
-    for (ee::ecs::EntityID id : m_system->m_entities)
+    for (ee::ecs::EntityID id : m_entities)
     {
-        Animation *anim = m_world.getComponent<Animation>(id);
-        ee::renderer::Sprite *sprite = m_world.getComponent<ee::renderer::Sprite>(id);
+        Animation *anim = _world.getComponent<Animation>(id);
+        ee::renderer::Sprite *sprite = _world.getComponent<ee::renderer::Sprite>(id);
 
         if (anim == nullptr || sprite == nullptr || anim->set == nullptr || !sprite->texture)
             continue;
